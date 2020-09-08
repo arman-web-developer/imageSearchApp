@@ -1,6 +1,12 @@
-# ImageSearchApp
+# Image Search App 
 
+This project used : <br />  
+                    frontend framework [Angular](https://angular.io/) version 9.0.7. <br />  
+                    for State Managment [NgRx](https://ngrx.io/) version 10.0.0. <br />  
+                    for UI Library [Angular Material](https://material.angular.io/) version 9.2.4. <br />  
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 9.0.4.
+
+
 
 ## Development server
 
