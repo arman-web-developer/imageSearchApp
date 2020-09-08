@@ -1,0 +1,29 @@
+<form class="form-wrapper">
+    <mat-form-field class="form-full-width">
+        <mat-icon matSuffix>search</mat-icon>
+        <mat-label>Search</mat-label>
+        <input matInput placeholder="Search your images" [(ngModel)]="searchTerm" name="searchTerm"
+            (ngModelChange)="searchTermChange($event)">
+    </mat-form-field>
+</form>
+
+<mat-grid-list cols="12" rowHeight="500px">
+    <mat-grid-tile [responsiveGridTile]="{xs: 12, sm: 6, md: 4, lg: 3, xl: 3}" *ngFor="let image of images">
+        <div class="image-list-item-container c-p ">
+            <img class="c-p image cover" src="{{image.urls.small}}">
+            <div class="image-list-item-actions">
+                <a href="{{image.links.html}}" target="blank" mat-fab color="accent"
+                    aria-label="Example icon button with a bookmark icon">
+                    <mat-icon mat-raised-button matTooltip="go to author's page">
+                        api
+                    </mat-icon>
+                </a>
+                <button mat-fab color="warn" (click)="openAddToFavoriteListDialog(image.urls.small)">
+                    <mat-icon mat-raised-button matTooltip="make favorite">
+                        favorite
+                    </mat-icon>
+                </button>
+            </div>
+        </div>
+    </mat-grid-tile>
+</mat-grid-list>

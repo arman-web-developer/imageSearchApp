@@ -1,0 +1,49 @@
+.favorite-list-title, .favorite-list-description {
+    padding: 0 30px;
+}
+
+.favorite-list-wrapper {
+    .favorite-list-item {
+        margin-top: 80px;
+    }
+}
+
+
+.no-data {
+    margin: 100px auto;
+    color: red;
+    text-align: center;
+}
+
+section {
+    display: table;
+  }
+  
+  .example-label {
+    display: table-cell;
+    font-size: 14px;
+    margin-left: 8px;
+    min-width: 120px;
+  }
+  
+  .example-button-row {
+    display: table-cell;
+    width: 490px;
+  }
+  
+  .example-button-row .mat-button-base {
+    margin: 8px 8px 8px 0;
+  }
+  
+  .example-flex-image-list-item-container {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+  }
+  
+  .example-button-image-list-item-container {
+    display: flex;
+    justify-content: center;
+    width: 120px;
+  }
+  

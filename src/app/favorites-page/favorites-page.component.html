@@ -1,0 +1,44 @@
+<div class="favorite-list-wrapper" *ngIf="favoritePageData?.length; else noData">
+    <div class="favorite-list-item" *ngFor="let favoriteListItem of favoritePageData">
+        <div class="example-label">
+            <h1 class="favorite-list-title">{{favoriteListItem.title}}</h1>
+            <h3 class="favorite-list-description">{{favoriteListItem.description}}</h3>
+        </div>
+        <div class="example-button-row">
+            <button mat-icon-button color="primary">
+                <mat-icon mat-icon-button matTooltip="Edit Favorite List"
+                    (click)="openEditFavoriteListDialog(favoriteListItem)">edit</mat-icon>
+            </button>
+            <button mat-icon-button color="primary">
+                <mat-icon mat-icon-button mat-raised-button matTooltip="Delete Favorite List"
+                    (click)="deleteFavoriteList(favoriteListItem.id)">delete</mat-icon>
+            </button>
+
+        </div>
+
+        <mat-grid-list cols="12" rowHeight="500px">
+            <mat-grid-tile [responsiveGridTile]="{xs: 12, sm: 6, md: 4, lg: 3, xl: 3}"
+                *ngFor="let image of favoriteListItem.images">
+                <div class="image-list-item-container c-p ">
+                    <img #imgReference class="c-p image cover" src="{{image.imgPath}}">
+                    <div class="image-list-item-actions">
+                        <a mat-fab color="warn" (click)="handleDownload(imgReference)">{{image.displayPath}}
+                            <mat-icon mat-raised-button matTooltip="download image">save_alt</mat-icon>
+                        </a>
+                        <button mat-fab color="accent" (click)="deleteImg(image.id)">
+
+                            <mat-icon mat-raised-button matTooltip="download image">delete
+                            </mat-icon>
+                        </button>
+                    </div>
+                </div>
+            </mat-grid-tile>
+        </mat-grid-list>
+    </div>
+</div>
+
+<ng-template #noData>
+    <div class="no-data">
+        <h4>There are not favorite list yet.</h4>
+    </div>
+</ng-template>

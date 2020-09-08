@@ -3,7 +3,9 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  favoritesAPI: 'http://5.9.1.58:3000',
+  endpointFromUnspalsh: 'https://api.unsplash.com'
 };
 
 /*

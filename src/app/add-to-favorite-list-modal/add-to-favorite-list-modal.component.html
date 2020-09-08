@@ -1,0 +1,30 @@
+<h1 mat-dialog-title>Add to the list</h1>
+<div mat-dialog-content>
+    <ng-container *ngIf="favoriteLists.length; else addFav">
+        <mat-list role="list" *ngFor="let item of favoriteLists">
+            <mat-list-item class="c-p" role="listitem" (click)="moveTotheList(item)">{{item.title}}</mat-list-item>
+        </mat-list>
+    </ng-container>
+    <ng-template #addFav>
+        <form class="form-wrapper">
+            <mat-form-field class="form-full-width ">
+                <mat-label>Title</mat-label>
+                <input matInput placeholder="create Title" [(ngModel)]="title" name="title">
+            </mat-form-field>
+            <mat-form-field class="form-full-width ">
+                <mat-label>Description</mat-label>
+                <input matInput placeholder="create Description" [(ngModel)]="description" name="description">
+            </mat-form-field>
+
+            <button mat-fab color="accent">
+                <mat-icon mat-raised-button matTooltip="download image" (click)="addFavoriteList()">
+                    add_circle_outline
+                </mat-icon>
+            </button>
+        </form>
+    </ng-template>
+
+</div>
+<mat-dialog-actions *ngIf="favoriteLists.length">
+    <button mat-button (click)="cancel()">Cancel</button>
+</mat-dialog-actions>
