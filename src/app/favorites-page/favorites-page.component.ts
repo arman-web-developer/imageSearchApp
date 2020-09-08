@@ -1,13 +1,16 @@
 import { Component, OnInit } from '@angular/core';
+
 import { ApiService } from '../core/services/api.service';
 import { select, Store } from '@ngrx/store';
 import { AppState } from '../store/state/state';
-import { BaseComponent } from '../core/base-component.ts/base-component';
 import { geFavoritesList } from '../store/selectors/favorites.selector';
-
 import { LoadAllFavorites, DeleteImageById, DeleteFavoriteListById, UpdateFavoriteListById } from '../store/actions/favorites.action';
-import { MatDialog } from '@angular/material/dialog';
+
+import { BaseComponent } from '../core/base-component.ts/base-component';
 import { EditFavoriteListComponent } from '../edit-favorite-list/edit-favorite-list.component';
+
+import { MatDialog } from '@angular/material/dialog';
+
 import { IFavorite } from '../core/models/favorite.type';
 
 @Component({
@@ -19,7 +22,11 @@ export class FavoritesPageComponent extends BaseComponent implements OnInit {
 
     public favoritePageData: IFavorite[];
 
-    constructor(private store$: Store<AppState>, public dialog: MatDialog, private apiService: ApiService) {
+    constructor(
+        private store$: Store<AppState>,
+        public dialog: MatDialog,
+        private apiService: ApiService
+    ) {
         super();
         this.store$.dispatch(LoadAllFavorites());
     }

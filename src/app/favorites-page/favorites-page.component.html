@@ -1,10 +1,10 @@
 <div class="favorite-list-wrapper" *ngIf="favoritePageData?.length; else noData">
     <div class="favorite-list-item" *ngFor="let favoriteListItem of favoritePageData">
-        <div class="example-label">
+        <div class="favorite-page-label">
             <h1 class="favorite-list-title">{{favoriteListItem.title}}</h1>
             <h3 class="favorite-list-description">{{favoriteListItem.description}}</h3>
         </div>
-        <div class="example-button-row">
+        <div class="favorite-page-button-row">
             <button mat-icon-button color="primary">
                 <mat-icon mat-icon-button matTooltip="Edit Favorite List"
                     (click)="openEditFavoriteListDialog(favoriteListItem)">edit</mat-icon>
@@ -13,7 +13,6 @@
                 <mat-icon mat-icon-button mat-raised-button matTooltip="Delete Favorite List"
                     (click)="deleteFavoriteList(favoriteListItem.id)">delete</mat-icon>
             </button>
-
         </div>
 
         <mat-grid-list cols="12" rowHeight="500px">

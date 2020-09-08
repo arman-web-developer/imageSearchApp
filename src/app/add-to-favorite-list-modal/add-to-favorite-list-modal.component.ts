@@ -1,13 +1,14 @@
 import { Component, OnInit, Inject } from '@angular/core';
+
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { IImage, IFavorite } from '../core/models/favorite.type';
-import { IUnsplashImage } from '../core/models/unsplash.type';
+
 import { Store, select } from '@ngrx/store';
 import { AppState } from '../store/state/state';
 import { LoadAllFavorites, AddFavoriteList, AddImageInFavoriteListById } from '../store/actions/favorites.action';
-import { BaseComponent } from '../core/base-component.ts/base-component';
 import { geFavoritesList } from '../store/selectors/favorites.selector';
-import { ApiService } from '../core/services/api.service';
+
+import { IFavorite } from '../core/models/favorite.type';
+import { BaseComponent } from '../core/base-component.ts/base-component';
 
 @Component({
     selector: 'app-add-to-favorite-list-modal',
@@ -21,7 +22,6 @@ export class AddToFavoriteListModalComponent extends BaseComponent implements On
     public description: string;
 
     constructor(
-        private apiService: ApiService,
         public dialogRef: MatDialogRef<AddToFavoriteListModalComponent>,
         private store$: Store<AppState>,
         @Inject(MAT_DIALOG_DATA) public data: string) {
@@ -38,7 +38,7 @@ export class AddToFavoriteListModalComponent extends BaseComponent implements On
         }));
     }
 
-    public moveTotheList = (selectedList) => {
+    public moveTotheList = (selectedList: IFavorite): void => {
         const payload = {
             imgPath: this.data
         }
@@ -49,13 +49,12 @@ export class AddToFavoriteListModalComponent extends BaseComponent implements On
         }));
     }
 
-    public addFavoriteList = () => {
-
-        let req: IFavorite = {
+    public addFavoriteList = (): void => {
+        const payload: IFavorite = {
             title: this.title,
             description: this.description,
         }
-        this.store$.dispatch(AddFavoriteList({ payload: req, imgId: this.data }));
+        this.store$.dispatch(AddFavoriteList({ payload, imgId: this.data }));
         this.cancel()
     }
 

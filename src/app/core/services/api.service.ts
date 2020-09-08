@@ -1,9 +1,11 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+
 import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
+
 import { environment } from '../../../environments/environment';
 import { IFavorite } from '../../core/models/favorite.type';
-import { map } from 'rxjs/operators';
 import { IUnsplashData } from '../../core/models/unsplash.type';
 
 @Injectable({
@@ -48,13 +50,13 @@ export class ApiService {
     }
 
     public addImageInFavoriteListById = (id: string, request: any) => {
-        return this.http.post(`${environment.favoritesAPI}/fav/${id}`, request).pipe(map((response) => {
+        return this.http.post(`${environment.favoritesAPI}/fav/${id}`, request).pipe(map(response => {
             return response;
         }));
     }
 
     public deleteImageById = (id: string) => {
-        return this.http.delete(`${environment.favoritesAPI}/fav/${id}`).pipe(map((response) => {
+        return this.http.delete(`${environment.favoritesAPI}/fav/${id}`).pipe(map(response => {
             return response;
         }));
     }

@@ -1,6 +1,6 @@
 <h1 mat-dialog-title>Add to the list</h1>
 <div mat-dialog-content>
-    <ng-container *ngIf="favoriteLists.length; else addFav">
+    <ng-container *ngIf="false; else addFav">
         <mat-list role="list" *ngFor="let item of favoriteLists">
             <mat-list-item class="c-p" role="listitem" (click)="moveTotheList(item)">{{item.title}}</mat-list-item>
         </mat-list>

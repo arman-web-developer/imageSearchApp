@@ -25,7 +25,6 @@ export const AddImageInFavoriteListById = createAction('[Favorites] Add Image In
 export const AddImageInFavoriteListByIdSuccess = createAction('[Favorites] Add Image In Favorite List Id Success');
 export const AddImageInFavoriteListByIdFail = createAction('[Favorites] Add Image In Favorite List By Id Fail');
 
-
 export const FavoriteActionsAll = union({
     LoadAllFavorites,
     LoadAllFavoritesSuccess,
@@ -50,7 +49,6 @@ export const FavoriteActionsAll = union({
     AddImageInFavoriteListById,
     AddImageInFavoriteListByIdSuccess,
     AddImageInFavoriteListByIdFail
-
 });
 
 export type FavoriteActionsUnion = typeof FavoriteActionsAll;

@@ -13,7 +13,6 @@ export function FavoriteReducer(state = initialState, action: FavoriteActions.Fa
     let updatedFavorites: IFavorite[];
 
     switch (action.type) {
-
         case FavoriteActions.LoadAllFavorites.type:
         case FavoriteActions.AddFavoriteList.type:
         case FavoriteActions.UpdateFavoriteListById.type:
@@ -24,9 +23,7 @@ export function FavoriteReducer(state = initialState, action: FavoriteActions.Fa
                 ...state,
             }
 
-
         case FavoriteActions.LoadAllFavoritesFail.type:
-
             return {
                 ...state,
             }
@@ -42,7 +39,6 @@ export function FavoriteReducer(state = initialState, action: FavoriteActions.Fa
             if (state.favoriteList.find((favoriteItem) => favoriteItem.id === action.payload.id)) {
                 return state;
             }
-
             return {
                 ...state,
                 favoriteList: [action.payload, ...state.favoriteList],
@@ -51,7 +47,6 @@ export function FavoriteReducer(state = initialState, action: FavoriteActions.Fa
         case FavoriteActions.UpdateFavoriteListByIdSuccess.type:
             updatedFavorites = state.favoriteList
                 .map((favoriteItem: IFavorite) => favoriteItem.id === action.payload.id ? action.payload : favoriteItem);
-
             return {
                 ...state,
                 favoriteList: updatedFavorites

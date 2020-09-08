@@ -1,16 +1,20 @@
 import { Component, OnInit } from '@angular/core';
-import { ApiService } from '../core/services/api.service';
-import { Subject } from 'rxjs';
-import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
-import { MatSnackBar } from '@angular/material/snack-bar';
-import { BaseComponent } from '../core/base-component.ts/base-component';
-import { select, Store } from '@ngrx/store';
+
 import { getImagesBySearch } from '../store/selectors/search.selector';
+import { select, Store } from '@ngrx/store';
 import { AppState } from '../store/state/state';
 import { SearchImages } from '../store/actions/search.images.action';
-import { MatDialog } from '@angular/material/dialog';
+
+import { Subject } from 'rxjs';
+import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
+
 import { AddToFavoriteListModalComponent } from '../add-to-favorite-list-modal/add-to-favorite-list-modal.component';
-import { IImage } from '../core/models/favorite.type';
+import { BaseComponent } from '../core/base-component.ts/base-component';
+
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { MatDialog } from '@angular/material/dialog';
+
+import { IUnsplashData } from '../core/models/unsplash.type';
 
 
 @Component({
@@ -20,21 +24,19 @@ import { IImage } from '../core/models/favorite.type';
 })
 export class SearchGalleryComponent extends BaseComponent implements OnInit {
 
-
-    searchTerm: string;
-    searchTermChanged: Subject<string> = new Subject<string>();
-
-    images;
+    public searchTerm: string;
+    public images: IUnsplashData[];;
+    private searchTermChanged: Subject<string> = new Subject<string>();
 
     constructor(
         private store$: Store<AppState>,
         private _snackBar: MatSnackBar,
-        public dialog: MatDialog) {
+        public dialog: MatDialog
+    ) {
 
         super();
 
         this.searchTermChanged.pipe(
-            //|   filter((str)=> !!str.trim().length),
             debounceTime(1000),
             distinctUntilChanged()
         ).subscribe((value) => {
@@ -50,17 +52,11 @@ export class SearchGalleryComponent extends BaseComponent implements OnInit {
         });
     }
 
+    public openAddToFavoriteListDialog = (selectedImage: string): void => {
 
-
-    openAddToFavoriteListDialog(selectedImage): void {
-
-        const dialogRef = this.dialog.open(AddToFavoriteListModalComponent, {
+        this.dialog.open(AddToFavoriteListModalComponent, {
             width: '400px',
             data: selectedImage
-        });
-
-        dialogRef.afterClosed().subscribe(result => {
-            console.log('The dialog was closed', result);
         });
     }
 
@@ -73,7 +69,6 @@ export class SearchGalleryComponent extends BaseComponent implements OnInit {
                     this.openSnackBar()
                 }
             }
-
         }));
     }
 
